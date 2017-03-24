@@ -1,0 +1,6 @@
+E:\wsz\col\col\bin\col.dll.config
+E:\wsz\col\col\bin\col.dll
+E:\wsz\col\col\bin\col.pdb
+E:\wsz\col\col\obj\Debug\col.dll
+E:\wsz\col\col\obj\Debug\col.pdb
+E:\wsz\col\col\obj\Debug\col.csprojResolveAssemblyReference.cache

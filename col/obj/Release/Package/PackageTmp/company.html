@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <link href="easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="easyui/themes/icon.css" rel="stylesheet" />
+
+    <script src="easyui/jquery-1.8.0.min.js"></script>
+    <script src="js/unslider.min.js"></script>
+    <script src="easyui/jquery.easyui.min.js"></script>
+    <script src="js/company.js"></script>
+    <script src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <style type="text/css">
+
+    </style>
+
+    <style>
+        html, body {
+            width:100%;
+            height:100%;
+        }
+        ul, ol {
+            padding: 0;
+        }
+
+        .banner {
+            position: relative;
+            overflow: auto;
+            text-align: center;
+        }
+
+            .banner li {
+                list-style: none;
+            }
+
+            .banner ul li {
+                float: left;
+            }
+
+        #b04 {
+            width: 800px;
+            margin:0 auto;
+        }
+
+            #b04 .dots {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 20px;
+            }
+
+                #b04 .dots li {
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    margin: 0 4px;
+                    text-indent: -999em;
+                    border: 2px solid #fff;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    opacity: .4;
+                    -webkit-transition: background .5s, opacity .5s;
+                    -moz-transition: background .5s, opacity .5s;
+                    transition: background .5s, opacity .5s;
+                }
+
+                    #b04 .dots li.active {
+                        background: #fff;
+                        opacity: 1;
+                    }
+
+            #b04 .arrow {
+                position: absolute;
+                top: 300px;
+            }
+
+            #b04 #al {
+                left: 15px;
+            }
+
+            #b04 #ar {
+                right: 15px;
+            }
+        .d_btn {
+            height: 30px;
+            float: left;
+            text-align: center;
+            line-height:30px;
+            color: #fff;
+            background-color: #80bff5;
+        }
+            .active {
+                background-color: #425094;
+            }
+           
+        #dg_btn {
+            margin-top: 10px;
+            width: 300px;  
+            
+        }
+        #dg {
+           
+        }
+        .dg_auto {
+            position: absolute;
+            top: 40px;
+            bottom: 5px;
+            width: 300px;
+            height: auto;
+        }
+        #main_left {
+            position: absolute;
+            top: 50px;
+            bottom: 0px;
+        }
+        #main_right {
+           position:absolute;
+           top:50px;
+           left:310px;
+            width:500px;
+            margin-top:10px;
+            margin-left:5px;
+           
+        }
+       
+        #form {
+            margin-bottom: 10px;
+            width: 500px;
+           padding-bottom:30px;
+           padding-top:30px;
+            background-color: #d3c5c5;
+        }
+        #btn_up {
+            margin-top:5px;
+            margin-left: 350px;
+            width: 50px;
+            height: 30px;
+            background-color: #f77070;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            border-radius: 10px;
+        }
+            #btn_up:active {
+                background-color: #d3c5c5;
+            }
+        #smallpic {
+            padding-top: 20px;
+            width: 500px;
+            height: 180px;
+            border: 1px solid #d3c5c5;
+            border-bottom: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        #smallpic ul {
+            height:180px;
+        }  
+        #smallpic img{
+            width:150px;
+            height:150px;
+            z-index:1;
+        }
+            #smallpic li {
+                float: left;
+                margin-left: 10px;
+               
+            }
+                #smallpic li:hover {
+                    transform:scale(1.2,1.2);
+                    z-index:2;
+                }
+                 input {
+                    width: 300px;
+                }
+        tr {
+           height:30px;
+        }
+
+        #bigpic {
+            position:absolute;
+            top:50px;
+            bottom:0px;
+            left:815px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #bigpic img{
+            position:absolute;
+            height:100%;
+           
+        }
+        #nextPic {
+            width: 500px;
+            height: 30px;
+           
+            border: 1px solid #d3c5c5;
+            border-top:0 ;
+        }
+            #nextPic img {
+                margin-left:150px;
+                width:30px;
+                height:30px;
+                background-color:#b6ff00;
+                border-radius:50%;
+            }
+                #nextPic img:active {
+                    transform:scale(1.2,1.2);
+                }
+       
+           
+    </style>
+
+</head>
+<body>
+    <div id="dsel">
+        <table>
+            <tr>
+               
+                <td><a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" plain="true" onclick="DelCom()">删除</a></td>
+                <td>公司名称：</td>
+                <td><input type="text" id="selUserName" /></td>
+                <td><a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search'" plain="true" onclick="Sel()">查询</a></td>
+                <td><a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-tip'" plain="true" onclick="ExportData()">生成EXCEL</a></td>
+                <td><a href="javascript:;" id="aexcel">导出EXCEL</a></td>
+                <td><a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-print'" plain="true" onclick="Print()">打印数据</a></td>
+                <td><a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-undo'" plain="true" onclick="check()">审核</a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="main_left" >
+        <div id="dg_btn"  >
+            <div class="d_btn active" style="width:145px" onclick="getData_undo(this)"><a>待整理</a></div>
+            <div class="d_btn" style="width:154px;border-left:1px solid #fff;" onclick="getData_done(this)"><a>已整理</a></div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="dg_auto">
+        <div id="dg" style=""></div>
+            </div>
+   </div>
+    <div id="main_right">
+        <div id="form">
+            <form id="fm_frm" method="post">
+                <table style="margin-left:20px;margin-top:5px;"> 
+                    <tr> 
+                    <td>公司编号：</td>
+                    <td><input type="text" id="txtComId1" name="comId1" readonly="readonly" /></td>
+                    </tr>
+                    <tr>
+                        <td>公司名称：</td>
+                        <td><input type="text" id="txtComName1" name="comName1" /></td>
+                     </tr>
+                    <tr>
+                        <td>地址：</td>
+                        <td><input type="text" id="txtAddress1" name="address1" /></td>
+                    </tr>
+                    <tr>
+                        <td>城市：</td>
+                        <td><input type="text" id="txtCity1" name="city1" /></td>
+                        </tr>
+                    <tr>
+                        <td>线路和价位：</td>
+                        <td><input type="text" id="txtLinePrice1" name="LinePrice1" /></td>
+                    </tr>
+                    <tr>
+                        <td>联系人：</td>
+                        <td><input type="text" id="txtComLinker1" name="tel1" /></td>
+                        </tr>
+                    <tr>
+                        <td>手机：</td>
+                        <td><input type="text" id="txtTel1" name="tel1" /></td>
+                        </tr>
+                    <tr>
+                        <td>操作员：</td>
+                        <td><input type="text" id="txtZbr1" name="zbr1" readonly="readonly" /></td>
+                        </tr>
+                    <tr>
+                        <td>采集时间：</td>
+                        <td><input type="text" id="txtCreateAt1" name="createAt1" readonly="readonly" /></td>
+                        </tr>
+                    <tr>
+                        <td>简介：</td>
+                        <td><input type="text" id="txtComment1" name="comment1" /></td>
+                    </tr>
+
+                </table>
+            </form>
+            <div id="btn_up"><a onclick="EditCom_frm()">保存</a></div>
+        </div>
+        <div id="smallpic">
+            <ul>
+                <!--
+                <li><img src="img/01.jpg" onclick="showBigPic(this)" /></li>
+                <li><img src="img/02.jpg" onclick="showBigPic(this)" /></li>
+                <li><img src="img/03.jpg" onclick="showBigPic(this)" /></li>
+                 -->      
+            </ul>    
+        </div>
+        <div id="nextPic">
+            <img src="img/arrowl.png" onclick="prePic()" />
+            <img src="img/arrowr.png" onclick="nextPic()" />
+        </div>
+        
+    </div>
+    <div id="bigpic">
+        
+        <img src=""  />
+         
+    </div>
+    
+   
+
+</body>
+</html>
